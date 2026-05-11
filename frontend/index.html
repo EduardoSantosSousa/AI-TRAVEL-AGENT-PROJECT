@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Travel Planner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#89d0ed",
+                      "on-primary-fixed-variant": "#104f4f",
+                      "surface": "#f9f9ff",
+                      "inverse-primary": "#98d1d0",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#2e6767",
+                      "on-primary-container": "#85bdbc",
+                      "on-tertiary-container": "#e3a585",
+                      "on-background": "#151c27",
+                      "on-secondary-fixed-variant": "#004d62",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#331200",
+                      "surface-container-high": "#e2e8f8",
+                      "outline-variant": "#bfc8c8",
+                      "tertiary-fixed": "#ffdbca",
+                      "surface-dim": "#d3daea",
+                      "primary-fixed-dim": "#98d1d0",
+                      "secondary-container": "#9ae1ff",
+                      "primary-container": "#0d4d4d",
+                      "secondary-fixed": "#baeaff",
+                      "on-primary-fixed": "#002020",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#f9b897",
+                      "tertiary-container": "#663a21",
+                      "inverse-on-surface": "#ebf1ff",
+                      "surface-bright": "#f9f9ff",
+                      "secondary": "#0c6780",
+                      "inverse-surface": "#2a313d",
+                      "primary": "#003535",
+                      "on-surface": "#151c27",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#b4edec",
+                      "outline": "#707978",
+                      "on-secondary-fixed": "#001f29",
+                      "surface-container-highest": "#dce2f3",
+                      "surface-container-low": "#f0f3ff",
+                      "background": "#f9f9ff",
+                      "tertiary": "#4b240d",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#683c22",
+                      "surface-variant": "#dce2f3",
+                      "on-surface-variant": "#404848",
+                      "on-secondary-container": "#09657f",
+                      "surface-container": "#e7eefe",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "48px",
+                      "stack-md": "16px",
+                      "stack-lg": "32px",
+                      "margin-mobile": "16px",
+                      "unit": "4px",
+                      "stack-sm": "8px",
+                      "gutter": "24px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Manrope"
+                      ],
+                      "label-sm": [
+                              "Manrope"
+                      ],
+                      "label-md": [
+                              "Manrope"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "headline-xl": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.25",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for tabs */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="w-full sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">travel_explore</span>
+<span class="text-xl font-bold tracking-tight text-teal-900 dark:text-teal-50 font-headline-md text-primary">VoyageAI</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-teal-700 dark:text-teal-400 border-b-2 border-teal-700 dark:border-teal-400 pb-1 font-semibold font-label-md" href="#">Planner</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors font-label-md" href="#">Saved Trips</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors font-label-md" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-all p-2 opacity-80 duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-all p-2 opacity-80 duration-150">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+<!-- Left Column: Trip Planning Form -->
+<section class="w-full md:w-1/3 flex flex-col gap-stack-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-stack-lg shadow-[0px_4px_20px_rgba(13,77,77,0.08)] relative z-10">
+<h1 class="font-headline-lg text-primary mb-stack-md">Plan Your Day</h1>
+<form id="planner-form" class="flex flex-col gap-stack-lg">
+<!-- Destination Input -->
+<div class="flex flex-col gap-stack-sm">
+<label class="font-label-md text-on-surface-variant" for="destination">Destination City</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">location_on</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-md text-on-surface placeholder:text-outline/60 outline-none" id="destination" placeholder="e.g., Kyoto, Japan" type="text"/>
+</div>
+</div>
+<!-- Duration Selection -->
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-md text-on-surface-variant">Duration</span>
+<div class="flex flex-wrap gap-2">
+<button class="duration-option px-4 py-2 rounded-lg border border-transparent bg-secondary-container text-on-secondary-container font-label-md transition-colors shadow-sm" data-days="1" type="button">1 day</button>
+
+<button class="duration-option px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-md hover:bg-surface-container transition-colors bg-surface-container-lowest" data-days="2" type="button">2 days</button>
+
+<button class="duration-option px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-md hover:bg-surface-container transition-colors bg-surface-container-lowest" data-days="3" type="button">3 days</button>
+
+<button class="duration-option px-4 py-2 rounded-lg border border-outline-variant text-on-surface font-label-md hover:bg-surface-container transition-colors bg-surface-container-lowest" data-days="5" type="button">5+ days</button>
+
+</div>
+</div>
+<!-- Interests Selection -->
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-md text-on-surface-variant">Interests</span>
+<div class="flex flex-wrap gap-2">
+<button class="interest-option px-4 py-2 rounded-full border border-outline-variant text-on-surface font-label-md hover:bg-surface-container transition-colors bg-surface-container-lowest" data-interest="Museums" type="button">Museums</button>
+
+<button class="interest-option px-4 py-2 rounded-full border border-transparent bg-secondary-container text-on-secondary-container font-label-md transition-colors shadow-sm" data-interest="Food" type="button">Food</button>
+
+<button class="interest-option px-4 py-2 rounded-full border border-outline-variant text-on-surface font-label-md hover:bg-surface-container transition-colors bg-surface-container-lowest" data-interest="Historical places" type="button">Historical places</button>
+
+<button class="interest-option px-4 py-2 rounded-full border border-transparent bg-secondary-container text-on-secondary-container font-label-md transition-colors shadow-sm" data-interest="Nature" type="button">Nature</button>
+
+<button class="interest-option px-4 py-2 rounded-full border border-outline-variant text-on-surface font-label-md hover:bg-surface-container transition-colors bg-surface-container-lowest" data-interest="Architecture" type="button">Architecture</button>
+</div>
+</div>
+<!-- User Preferences -->
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-md text-on-surface-variant">Preferences</span>
+<div class="col-span-2">
+<label class="block font-label-sm text-outline mb-1" for="start-date">Start Date</label>
+<input class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-sm text-on-surface outline-none" id="start-date" type="date"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-sm text-outline mb-1" for="budget">Budget</label>
+<select class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-sm text-on-surface outline-none" id="budget">
+<option value="economic">Economic</option>
+<option selected="" value="medium">Medium</option>
+<option value="premium">Premium</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-outline mb-1" for="pace">Pace</label>
+<select class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-sm text-on-surface outline-none" id="pace">
+<option value="relaxed">Relaxed</option>
+<option selected="" value="moderate">Moderate</option>
+<option value="intense">Intense</option>
+</select>
+</div>
+<div class="col-span-2">
+<label class="block font-label-sm text-outline mb-1" for="trip-type">Trip Type</label>
+<select class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-sm text-on-surface outline-none" id="trip-type">
+<option value="family">Family</option>
+<option selected="" value="couple">Couple</option>
+<option value="solo">Solo</option>
+<option value="friends">Friends</option>
+<option value="business">Business</option>
+</select>
+
+</div>
+<div>
+<label class="block font-label-sm text-outline mb-1" for="start-time">Start Time</label>
+<input class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-sm text-on-surface outline-none" id="start-time" type="time" value="09:00"/>
+</div>
+<div>
+<label class="block font-label-sm text-outline mb-1" for="end-time">End Time</label>
+<input class="w-full px-3 py-2 bg-surface border border-outline-variant rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all font-body-sm text-on-surface outline-none" id="end-time" type="time" value="20:00"/>
+</div>
+</div>
+</div>
+<!-- Restrictions -->
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-md text-on-surface-variant">Restrictions</span>
+<div class="flex flex-wrap gap-2">
+<button class="restriction-option px-3 py-1.5 rounded-full border border-outline-variant text-on-surface font-label-sm hover:bg-surface-container transition-colors bg-surface-container-lowest flex items-center gap-1" data-restriction="Avoid indoor places" type="button">
+  <span class="material-symbols-outlined text-[16px]">close</span>
+  Avoid indoor places
+</button>
+
+<button class="restriction-option px-3 py-1.5 rounded-full border border-outline-variant text-on-surface font-label-sm hover:bg-surface-container transition-colors bg-surface-container-lowest flex items-center gap-1" data-restriction="Accessibility" type="button">
+  <span class="material-symbols-outlined text-[16px]">accessible</span>
+  Accessibility
+</button>
+
+<button class="restriction-option px-3 py-1.5 rounded-full border border-outline-variant text-on-surface font-label-sm hover:bg-surface-container transition-colors bg-surface-container-lowest flex items-center gap-1" data-restriction="Children" type="button">
+  <span class="material-symbols-outlined text-[16px]">child_care</span>
+  Children
+</button>
+
+<button class="restriction-option px-3 py-1.5 rounded-full border border-outline-variant text-on-surface font-label-sm hover:bg-surface-container transition-colors bg-surface-container-lowest flex items-center gap-1" data-restriction="Dietary restrictions" type="button">
+  <span class="material-symbols-outlined text-[16px]">restaurant</span>
+  Dietary restrictions
+</button>
+
+<button class="restriction-option px-3 py-1.5 rounded-full border border-outline-variant text-on-surface font-label-sm hover:bg-surface-container transition-colors bg-surface-container-lowest flex items-center gap-1" data-restriction="Avoid long walks" type="button">
+  <span class="material-symbols-outlined text-[16px]">directions_walk</span>
+  Avoid long walks
+</button>
+
+</div>
+</div>
+<!-- Primary Action -->
+<button class="mt-4 w-full bg-primary hover:bg-surface-tint text-on-primary font-label-md py-3 rounded-lg shadow-sm transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">auto_awesome</span>
+                        Generate itinerary
+                    </button>
+</form>
+</div>
+<!-- Contextual Insight/Ad (Glassmorphism hint) -->
+<div class="bg-secondary-fixed/30 border border-secondary-fixed-dim/50 rounded-lg p-stack-md backdrop-blur-sm mt-auto relative overflow-hidden">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-container/50 rounded-full blur-xl"></div>
+<div class="relative z-10 flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">tips_and_updates</span>
+<div>
+<h4 class="font-label-md text-on-surface">Pro Tip</h4>
+<p class="font-body-sm text-on-surface-variant mt-1">Selecting 2-3 interests yields the most balanced day trips.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Itinerary Area -->
+<section id="itinerary-panel" class="w-full md:w-2/3 relative flex flex-col min-h-[600px] bg-surface-container-lowest rounded-xl border border-outline-variant/50 overflow-hidden shadow-[0px_4px_20px_rgba(13,77,77,0.08)]">
+
+  <div id="itinerary-result" class="flex-grow flex flex-col h-full z-10 overflow-y-auto">
+    <div class="p-stack-lg flex flex-col items-center justify-center min-h-[600px] text-center">
+      <span class="material-symbols-outlined text-6xl text-outline">travel_explore</span>
+      <h2 class="font-headline-md text-on-surface mt-4">Your itinerary will appear here</h2>
+      <p class="font-body-md text-on-surface-variant mt-2">
+        Fill in the form and generate your trip plan.
+      </p>
+    </div>
+  </div>
+
+</section>
+</main>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqyKB5VV2GSUWp9EBNdlR2iEqF_VW8ARo&libraries=geometry">
+</script>
+<script type="module" src="/src/main.js"></script>
+</body></html>

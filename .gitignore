@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+.env
+logs/
+frontend/node_modules/
+frontend/dist/
+AI_Travel_Agent.egg-info/
+.pytest_cache/
+
