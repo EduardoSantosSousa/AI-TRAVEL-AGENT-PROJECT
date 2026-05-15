@@ -7,4 +7,5 @@ frontend/node_modules/
 frontend/dist/
 AI_Travel_Agent.egg-info/
 .pytest_cache/
-
+PROCEDIMENTOS_DOCKER_GCP.txt
+text.txt
