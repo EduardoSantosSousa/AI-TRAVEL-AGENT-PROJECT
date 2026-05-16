@@ -404,6 +404,50 @@ kubectl get pods -n logging
 kubectl get services -n logging
 ```
 
+## Observability Evidence
+
+The following screenshots show the observability layer running with real Kubernetes logs indexed in Elasticsearch and explored through Kibana. This helps validate that the application is not only deployed, but also observable.
+
+Typical questions this layer can answer:
+
+- Are backend and frontend Pods producing logs?
+- Which namespace or Pod is generating the most log volume?
+- Are there errors, failed requests, or exceptions in the application?
+- Is the logging pipeline collecting data from Kubernetes workloads?
+- Are logs searchable by time range, namespace, Pod, and message content?
+
+<p align="center">
+  <img src="doc/img/obs_img_1.png" alt="Kibana observability screenshot 1" width="45%" />
+  <img src="doc/img/obs_img_2.png" alt="Kibana observability screenshot 2" width="45%" />
+</p>
+
+<p align="center">
+  <img src="doc/img/obs_img_3.png" alt="Kibana observability screenshot 3" width="45%" />
+  <img src="doc/img/obs_img_4.png" alt="Kibana observability screenshot 4" width="45%" />
+</p>
+
+Useful Kibana filters:
+
+```text
+kubernetes.namespace : default
+kubernetes.namespace : logging
+kubernetes.pod.name : ai-travel-backend*
+kubernetes.pod.name : ai-travel-frontend*
+message : *error* or message : *failed* or message : *exception*
+```
+
+Useful Elasticsearch check:
+
+```bash
+curl http://localhost:9200/_cat/indices?v
+```
+
+Expected index pattern:
+
+```text
+kubernetes-logs-*
+```
+
 ## Example Request
 
 ```json
